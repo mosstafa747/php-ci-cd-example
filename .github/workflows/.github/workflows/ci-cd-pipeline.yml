@@ -1,1 +1,54 @@
+name: PHP CI/CD Pipeline
+
+# تشغيل العملية عند حدوث Push أو Pull Request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# تعريف الوظائف (Jobs)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: سحب الكود
+        uses: actions/checkout@v3
+
+      - name: إعداد PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: تثبيت Composer
+        run: composer install
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: سحب الكود
+        uses: actions/checkout@v3
+
+      - name: إعداد PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: تثبيت Composer
+        run: composer install
+
+      - name: تشغيل الاختبارات
+        run: ./vendor/bin/phpunit test.php
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: نشر التطبيق
+        run: |
+          echo "التطبيق جاهز للإطلاق!"
 
