@@ -5,7 +5,7 @@ class IndexTest extends TestCase
 {
     public function testOutput()
     {
-        $output = "مرحبًا بك في مشروع التكامل المستمر CI/CD!";
+        $output = "مرحبًا بك في مشروع اggلتكامل المستمر CI/CD!";
         $this->assertEquals($output, "مرحبًا بك في مشروع التكامل المستمر CI/CD!");
     }
 }
